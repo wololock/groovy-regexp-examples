@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "me.champeau.gradle:jmh-gradle-plugin:0.4.8"
+        classpath "me.champeau.gradle:jmh-gradle-plugin:0.5.0"
     }
 }
 
@@ -16,11 +16,18 @@ apply plugin: "java"
 apply plugin: "me.champeau.gradle.jmh"
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.5.6'
+    compile 'org.codehaus.groovy:groovy:2.5.11:indy'
+    // For Groovy 3 use below dependency
+    // compile 'org.codehaus.groovy:groovy:3.0.3:indy'
+}
+
+compileGroovy {
+    groovyOptions.optimizationOptions.indy = true
 }
 
 jmh {
